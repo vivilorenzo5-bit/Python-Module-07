@@ -25,7 +25,7 @@ class NormalStrategy(BattleStrategy):
         return [creature.attack()]
 
 
-class AgressiveStrategy(BattleStrategy):
+class AggressiveStrategy(BattleStrategy):
     def is_valid(self, creature: Creature) -> bool:
         return isinstance(creature, TransformCapability)
 

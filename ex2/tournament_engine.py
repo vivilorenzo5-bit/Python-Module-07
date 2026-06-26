@@ -1,4 +1,3 @@
-import sys
 from ex0.factories import CreatureFactory
 from ex2.strategies import BattleStrategy, InvalidStrategyError
 
@@ -24,7 +23,7 @@ class Tournament:
                 c1 = fact_1.create_base()
                 c2 = fact_2.create_base()
 
-                print(" * Battle *")
+                print("\n * Battle *")
                 print(f"{c1.describe()}")
                 print(" vs.")
                 print(f"{c2.describe()}")
@@ -36,7 +35,6 @@ class Tournament:
                         print(log)
                 except InvalidStrategyError as e:
                     print(f"Battle error, aborting tournament: {e}")
-                    sys.exit(1)
 
                 try:
                     logs_2 = strat_2.act(c2)
@@ -44,4 +42,3 @@ class Tournament:
                         print(log)
                 except InvalidStrategyError as e:
                     print(f"Battle error, aborting tournament: {e}")
-                    sys.exit(1)
