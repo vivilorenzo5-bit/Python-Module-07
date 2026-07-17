@@ -1,8 +1,17 @@
-from ex0 import FlameFactory, AquaFactory
+from ex0 import FlameFactory, AquaFactory, CreatureFactory
 from ex1 import HealingCreatureFactory, TransformCreatureFactory
 from ex2 import (
-    Tournament, NormalStrategy, AggressiveStrategy, DefensiveStrategy
+    Tournament, NormalStrategy, AggressiveStrategy, DefensiveStrategy,
+    BattleStrategy
 )
+
+
+def battle(opponents: list[tuple[CreatureFactory, BattleStrategy]]) -> None:
+    try:
+        tournament = Tournament(opponents)
+        tournament.execute()
+    except Exception as e:
+        print(f"Battle error, aborting tournament: {e}")
 
 
 if __name__ == "__main__":
@@ -16,8 +25,7 @@ if __name__ == "__main__":
         (flame_f, NormalStrategy()),
         (heal_f, DefensiveStrategy())
     ]
-    t0 = Tournament(opponents_0)
-    t0.execute()
+    battle(opponents_0)
     print()
 
     print("Tournament 1 (error)")
@@ -25,8 +33,7 @@ if __name__ == "__main__":
         (flame_f, AggressiveStrategy()),
         (heal_f, DefensiveStrategy())
     ]
-    t1 = Tournament(opponents_1)
-    t1.execute()
+    battle(opponents_1)
     print()
 
     print("Tournament 2 (multiple)")
@@ -35,5 +42,4 @@ if __name__ == "__main__":
         (heal_f, DefensiveStrategy()),
         (trans_f, AggressiveStrategy())
     ]
-    t2 = Tournament(opponents_2)
-    t2.execute()
+    battle(opponents_2)
